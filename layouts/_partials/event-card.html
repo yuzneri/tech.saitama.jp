@@ -1,0 +1,7 @@
+<li class="event-card">
+  <a href="{{ .RelPermalink }}">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "2006年1月2日（Mon）" }}</time>
+    <span class="event-card-title">{{ .Title }}</span>
+    {{ with .Params.venue }}<span class="event-card-venue">{{ . }}</span>{{ end }}
+  </a>
+</li>

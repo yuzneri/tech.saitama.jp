@@ -1,0 +1,24 @@
+{{ define "main" }}
+<section class="section">
+  <div class="container container-narrow">
+    <article>
+      <header class="page-header">
+        <h1>{{ .Title }}</h1>
+        {{ if eq .Section "events" }}
+        <dl class="event-meta">
+          <div><dt>日時</dt><dd>{{ .Date | time.Format "2006年1月2日（Mon）15:04" }}{{ with .Params.endTime }}〜{{ . }}{{ end }}</dd></div>
+          {{ with .Params.venue }}<div><dt>会場</dt><dd>{{ . }}</dd></div>{{ end }}
+          {{ with .Params.address }}<div><dt>住所</dt><dd>{{ . }}</dd></div>{{ end }}
+          {{ with .Params.fee }}<div><dt>参加費</dt><dd>{{ . }}</dd></div>{{ end }}
+          {{ with .Params.connpass }}<div><dt>申し込み</dt><dd><a href="{{ . }}" target="_blank" rel="noopener">connpassイベントページ ↗</a></dd></div>{{ end }}
+        </dl>
+        {{ end }}
+      </header>
+      {{ .Content }}
+      {{ with .Params.connpass }}
+      <p>参加枠・タイムテーブルなどの詳細と申し込みは <a href="{{ . }}" target="_blank" rel="noopener">connpassイベントページ ↗</a> をご覧ください。</p>
+      {{ end }}
+    </article>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,33 @@
+{{ define "main" }}
+<section class="section">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+
+    {{ $upcoming := where .RegularPages "Date" ">=" now }}
+    {{ $past := where .RegularPages "Date" "<" now }}
+
+    {{ with $upcoming.Reverse }}
+    <h2>開催予定</h2>
+    <ul class="event-list">
+      {{ range . }}
+      {{ partial "event-card.html" . }}
+      {{ end }}
+    </ul>
+    {{ end }}
+
+    {{ with $past }}
+    <h2>過去のイベント</h2>
+    <ul class="event-list">
+      {{ range . }}
+      {{ partial "event-card.html" . }}
+      {{ end }}
+    </ul>
+    {{ end }}
+
+    {{ if not .RegularPages }}
+    <p>イベントはまだありません。</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

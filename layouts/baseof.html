@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
+  <meta name="description" content="{{ .Description | default site.Params.description }}">
+  {{ with resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+  {{ end }}
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="{{ site.Home.RelPermalink }}">Tech <span class="logo-accent">Saitama</span></a>
+      <nav class="site-nav">
+        {{ range site.Menus.main }}
+        <a href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
+        <a href="{{ site.Params.connpassURL }}" target="_blank" rel="noopener">connpass ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Tech Saitama — 埼玉のエンジニアコミュニティ（主催：盆栽.dev）</p>
+      <p>
+        <a href="{{ site.Params.connpassURL }}" target="_blank" rel="noopener">connpass</a> ·
+        <a href="https://x.com/hashtag/{{ site.Params.hashtag }}" target="_blank" rel="noopener">#{{ site.Params.hashtag }}</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

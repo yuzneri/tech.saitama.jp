@@ -1,0 +1,26 @@
+baseURL = "https://tech.saitama.jp/"
+languageCode = "ja"
+title = "Tech Saitama"
+defaultContentLanguage = "ja"
+hasCJKLanguage = true
+enableRobotsTXT = true
+buildFuture = true
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  description = "埼玉を拠点に、エンジニア同士が学び、つながり、技術をじっくり育てていくコミュニティ"
+  connpassURL = "https://bonsai-dev.connpass.com/"
+  hashtag = "TechSaitama"
+
+[menus]
+  [[menus.main]]
+    name = "ホーム"
+    pageRef = "/"
+    weight = 10
+  [[menus.main]]
+    name = "イベント"
+    pageRef = "/events"
+    weight = 20
+
+[markup.goldmark.renderer]
+  unsafe = true

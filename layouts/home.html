@@ -1,0 +1,34 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="container">
+    <p class="hero-kicker">埼玉のエンジニアコミュニティ</p>
+    <h1 class="hero-title">Tech <span class="logo-accent">Saitama</span></h1>
+    <p class="hero-lead">{{ site.Params.description }}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ site.Params.connpassURL }}" target="_blank" rel="noopener">connpassでメンバーになる</a>
+      <a class="btn btn-ghost" href="{{ (site.GetPage "/events").RelPermalink }}">イベントを見る</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {{ .Content }}
+  </div>
+</section>
+
+{{ $events := where site.RegularPages "Section" "events" }}
+{{ $upcoming := where $events "Date" ">=" now }}
+{{ with $upcoming.Reverse }}
+<section class="section section-alt">
+  <div class="container">
+    <h2>開催予定のイベント</h2>
+    <ul class="event-list">
+      {{ range . }}
+      {{ partial "event-card.html" . }}
+      {{ end }}
+    </ul>
+  </div>
+</section>
+{{ end }}
+{{ end }}
