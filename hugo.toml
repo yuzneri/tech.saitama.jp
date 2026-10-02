@@ -21,6 +21,10 @@ disableKinds = ["taxonomy", "term"]
     name = "イベント"
     pageRef = "/events"
     weight = 20
+  [[menus.main]]
+    name = "行動規範"
+    pageRef = "/code-of-conduct"
+    weight = 30
 
 [markup.goldmark.renderer]
   unsafe = true
