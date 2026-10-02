@@ -6,6 +6,7 @@ hasCJKLanguage = true
 enableRobotsTXT = true
 buildFuture = true
 disableKinds = ["taxonomy", "term"]
+disableHugoGeneratorInject = true
 
 [params]
   description = "埼玉を拠点に、エンジニア同士が学び、つながり、技術をじっくり育てていくコミュニティ"
@@ -28,3 +29,6 @@ disableKinds = ["taxonomy", "term"]
 
 [markup.goldmark.renderer]
   unsafe = true
+
+[minify]
+  minifyOutput = true
