@@ -1,7 +1,7 @@
 ---
 title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 date: {{ .Date }}
-endTime: "21:00"
+end:
 venue:
 address:
 fee: 無料

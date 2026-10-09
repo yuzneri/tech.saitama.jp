@@ -14,9 +14,7 @@
       <link>{{ .Permalink }}</link>
       <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
       <guid>{{ .Permalink }}</guid>
-      {{- $when := .Date | time.Format "2006年1月2日（Mon）15:04" -}}
-      {{- with .Params.endTime }}{{ $when = printf "%s〜%s" $when . }}{{ end -}}
-      {{- $details := slice (printf "日時: %s" $when) -}}
+      {{- $details := slice (printf "日時: %s" (partial "event-when.html" .)) -}}
       {{- with .Params.venue }}{{ $details = $details | append (printf "会場: %s" .) }}{{ end -}}
       {{- with .Params.connpass }}{{ $details = $details | append (printf "申し込み: %s" .) }}{{ end -}}
       {{- with trim .Plain " \n" }}{{ $details = $details | append . }}{{ end }}

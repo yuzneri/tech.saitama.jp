@@ -6,7 +6,7 @@
         <h1>{{ .Title }}</h1>
         {{ if eq .Section "events" }}
         <dl class="event-meta">
-          <div><dt>日時</dt><dd>{{ .Date | time.Format "2006年1月2日（Mon）15:04" }}{{ with .Params.endTime }}〜{{ . }}{{ end }}</dd></div>
+          <div><dt>日時</dt><dd>{{ partial "event-when.html" . }}</dd></div>
           {{ with .Params.venue }}<div><dt>会場</dt><dd>{{ . }}</dd></div>{{ end }}
           {{ with .Params.address }}<div><dt>住所</dt><dd>{{ . }}</dd></div>{{ end }}
           {{ with .Params.fee }}<div><dt>参加費</dt><dd>{{ . }}</dd></div>{{ end }}

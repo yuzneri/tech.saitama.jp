@@ -17,14 +17,9 @@ hugo build         # public/ に静的ファイルを生成
 
 ## デプロイ
 
-`main` への push で GitHub Actions（`.github/workflows/hugo.yaml`）がビルドし、GitHub Pages に公開する。
-開催予定/過去の振り分けを更新するため、毎日 0:00 JST にも再ビルドする。
+Cloudflare Pages でビルドし公開する。`main` への push でビルドが走る。
+開催予定/過去の振り分けを更新するため、[connpass-sync](https://github.com/yuzneri/connpass-sync) が毎日 6:00 JST に deploy hook を叩いて再ビルドする。
 `public/` はビルド成果物なのでコミットしない。
-
-初回のみリポジトリ側で次を設定する。
-
-- Settings > Pages > Build and deployment の Source を「GitHub Actions」にする
-- 同じ画面の Custom domain に `tech.saitama.jp` を設定し、DNS で `tech.saitama.jp` の CNAME を `<ユーザー名>.github.io` に向ける
 
 ## イベントの追加
 
@@ -32,8 +27,8 @@ hugo build         # public/ に静的ファイルを生成
 hugo new events/2026-07-example.md
 ```
 
-front matter の `date`（開始日時）・`venue`・`address`・`fee`・`connpass`（イベントURL）・
-`endTime`（終了時刻の文字列）を埋め、本文に概要を書いて `draft: true` を外す。
+connpass のイベントは connpass-sync が自動で追加する。手で追加する場合は上のコマンドで作り、
+front matter の `date`（開始日時）・`end`（終了日時）・`venue`・`address`・`fee`・`connpass`（イベントURL）を埋め、本文に概要を書いて `draft: true` を外す。
 開催予定/過去の振り分けは `date` とビルド時刻の比較で自動。
 
 イベントは RSS（`/events/index.xml`）と iCalendar（`/events/index.ics`）にも自動で出力される。

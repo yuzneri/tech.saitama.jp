@@ -1,0 +1,12 @@
+{{- /* 開催日時の表示文字列。終了が同じ日なら時刻だけを添える */ -}}
+{{- $start := .Date -}}
+{{- $s := $start | time.Format "2006年1月2日（Mon）15:04" -}}
+{{- with .Params.end -}}
+  {{- $end := time.AsTime . -}}
+  {{- if eq ($end.Format "2006-01-02") ($start.Format "2006-01-02") -}}
+    {{- $s = printf "%s〜%s" $s ($end | time.Format "15:04") -}}
+  {{- else -}}
+    {{- $s = printf "%s〜%s" $s ($end | time.Format "2006年1月2日（Mon）15:04") -}}
+  {{- end -}}
+{{- end -}}
+{{- return $s -}}

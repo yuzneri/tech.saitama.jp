@@ -22,11 +22,8 @@
     (printf "DTSTAMP:%s" (now.UTC.Format $utc))
     (printf "DTSTART:%s" (.Date.UTC.Format $utc))
   -}}
-  {{- $start := .Date -}}
-  {{- with .Params.endTime -}}
-    {{- /* endTime は "21:00" 形式の時刻文字列なので、開始日とタイムゾーンを補って日時にする */ -}}
-    {{- $end := time.AsTime (printf "%sT%s:00%s" ($start.Format "2006-01-02") . ($start.Format "-07:00")) -}}
-    {{- $lines = $lines | append (printf "DTEND:%s" ($end.UTC.Format $utc)) -}}
+  {{- with .Params.end -}}
+    {{- $lines = $lines | append (printf "DTEND:%s" ((time.AsTime .).UTC.Format $utc)) -}}
   {{- end -}}
   {{- $lines = $lines | append (printf "SUMMARY:%s" (partial "ical-text.txt" .Title)) -}}
   {{- with $location -}}
