@@ -148,6 +148,22 @@ h2 { margin-top: 2.2rem; border-bottom: 2px solid var(--green-soft); padding-bot
   margin: 1rem 0;
 }
 
+.feed-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.feed-links a {
+  padding: 0.25rem 0.9rem;
+  border: 1.5px solid var(--green);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.feed-links a:hover { background: var(--green-soft); }
+
 .event-card { margin-bottom: 0.8rem; }
 
 .event-card a {

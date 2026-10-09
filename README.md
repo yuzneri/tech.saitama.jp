@@ -36,6 +36,9 @@ front matter の `date`（開始日時）・`venue`・`address`・`fee`・`connp
 `endTime`（終了時刻の文字列）を埋め、本文に概要を書いて `draft: true` を外す。
 開催予定/過去の振り分けは `date` とビルド時刻の比較で自動。
 
+イベントは RSS（`/events/index.xml`）と iCalendar（`/events/index.ics`）にも自動で出力される。
+テンプレートは `layouts/events/section.rss.xml` と `layouts/events/section.calendar.ics`。
+
 ## 構成
 
 - `content/_index.md` — トップ（コミュニティ紹介）

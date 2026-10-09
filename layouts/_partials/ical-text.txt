@@ -1,0 +1,7 @@
+{{- /* RFC 5545 3.3.11: TEXT 値のエスケープ */ -}}
+{{- $s := replace . "\\" "\\\\" -}}
+{{- $s = replace $s ";" "\\;" -}}
+{{- $s = replace $s "," "\\," -}}
+{{- $s = replace $s "\r\n" "\\n" -}}
+{{- $s = replace $s "\n" "\\n" -}}
+{{- return $s -}}

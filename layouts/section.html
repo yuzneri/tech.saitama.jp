@@ -4,6 +4,17 @@
     <h1>{{ .Title }}</h1>
     {{ .Content }}
 
+    {{ $rss := .OutputFormats.Get "rss" }}
+    {{ $ical := .OutputFormats.Get "calendar" }}
+    {{ if and $rss $ical }}
+    <p class="feed-links">
+      {{- /* webcal:// はカレンダーアプリで購読を開く。Google カレンダー等は https の URL を「URL で追加」に貼る */}}
+      <a href="{{ $ical.Permalink | safeURL }}">カレンダーに登録</a>
+      <a href="{{ $ical.Permalink | replaceRE "^webcal://" "https://" }}">iCal（.ics）</a>
+      <a href="{{ $rss.Permalink }}">RSS</a>
+    </p>
+    {{ end }}
+
     {{ $upcoming := where .RegularPages "Date" ">=" now }}
     {{ $past := where .RegularPages "Date" "<" now }}
 

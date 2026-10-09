@@ -1,0 +1,13 @@
+{{- /* RFC 5545 3.1: 1行75オクテットを超える場合は CRLF + 空白で折り返す。UTF-8 の文字途中では切らない */ -}}
+{{- $out := "" -}}
+{{- $n := 0 -}}
+{{- range split . "" -}}
+  {{- $size := len . -}}
+  {{- if gt (add $n $size) 75 -}}
+    {{- $out = print $out "\r\n " -}}
+    {{- $n = 1 -}}
+  {{- end -}}
+  {{- $out = print $out . -}}
+  {{- $n = add $n $size -}}
+{{- end -}}
+{{- return $out -}}

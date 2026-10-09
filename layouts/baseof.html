@@ -8,6 +8,10 @@
   {{ with resources.Get "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
   {{ end }}
+  {{ with site.GetPage "/events" }}
+  {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }} イベント">{{ end }}
+  {{ with .OutputFormats.Get "calendar" }}<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink | replaceRE "^webcal://" "https://" }}" title="{{ site.Title }} イベント">{{ end }}
+  {{ end }}
 </head>
 <body>
   <header class="site-header">

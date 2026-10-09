@@ -1,0 +1,43 @@
+{{- /* 行を集めてから折り返し・CRLF を付けて出力する（RFC 5545 は改行に CRLF を要求する） */ -}}
+{{- $utc := "20060102T150405Z" -}}
+{{- $lines := slice
+  "BEGIN:VCALENDAR"
+  "VERSION:2.0"
+  (printf "PRODID:-//%s//Events//JA" site.Title)
+  "CALSCALE:GREGORIAN"
+  "METHOD:PUBLISH"
+  (printf "X-WR-CALNAME:%s" (partial "ical-text.txt" site.Title))
+  "X-WR-TIMEZONE:Asia/Tokyo"
+-}}
+{{- range .RegularPages -}}
+  {{- $location := trim (printf "%s %s" (.Params.venue | default "") (.Params.address | default "")) " " -}}
+  {{- $url := .Params.connpass | default .Permalink -}}
+  {{- $description := trim .Plain " \n" -}}
+  {{- with .Params.connpass -}}
+    {{- $description = trim (printf "%s\n\n詳細・申し込み: %s" $description .) " \n" -}}
+  {{- end -}}
+  {{- $lines = $lines | append
+    "BEGIN:VEVENT"
+    (printf "UID:%s@%s" .File.ContentBaseName (urls.Parse site.BaseURL).Host)
+    (printf "DTSTAMP:%s" (now.UTC.Format $utc))
+    (printf "DTSTART:%s" (.Date.UTC.Format $utc))
+  -}}
+  {{- $start := .Date -}}
+  {{- with .Params.endTime -}}
+    {{- /* endTime は "21:00" 形式の時刻文字列なので、開始日とタイムゾーンを補って日時にする */ -}}
+    {{- $end := time.AsTime (printf "%sT%s:00%s" ($start.Format "2006-01-02") . ($start.Format "-07:00")) -}}
+    {{- $lines = $lines | append (printf "DTEND:%s" ($end.UTC.Format $utc)) -}}
+  {{- end -}}
+  {{- $lines = $lines | append (printf "SUMMARY:%s" (partial "ical-text.txt" .Title)) -}}
+  {{- with $location -}}
+    {{- $lines = $lines | append (printf "LOCATION:%s" (partial "ical-text.txt" .)) -}}
+  {{- end -}}
+  {{- with $description -}}
+    {{- $lines = $lines | append (printf "DESCRIPTION:%s" (partial "ical-text.txt" .)) -}}
+  {{- end -}}
+  {{- $lines = $lines | append (printf "URL:%s" $url) "END:VEVENT" -}}
+{{- end -}}
+{{- $lines = $lines | append "END:VCALENDAR" -}}
+{{- range $lines -}}
+  {{- print (partial "ical-fold.txt" .) "\r\n" -}}
+{{- end -}}
