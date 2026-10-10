@@ -4,7 +4,7 @@ Tech Saitama（[盆栽.dev](https://bonsai-dev.connpass.com/) が主催する埼
 
 ## 必要なもの
 
-- Hugo extended v0.146 以上（新テンプレート構造を使用）
+- Hugo extended v0.147.7（Cloudflare Pages・GitHub Actions と同じバージョン）
 
 ## 開発
 
