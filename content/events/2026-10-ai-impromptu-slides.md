@@ -7,6 +7,9 @@ address: "埼玉県さいたま市大宮区大門町2丁目118"
 fee: 無料
 connpass: https://bonsai-dev.connpass.com/event/401217/
 markup: html
+hashtag: "bonsaidev"
+capacity: 12
+description: "The Great AI Slide-Off Is Where the Chaos Begins!"
 ---
 
 <p>盆栽.dev は、埼玉を拠点に、エンジニア同士が学び、つながり、盆栽のように技術をじっくり育てていくコミュニティです。派手さより継続、消費より積み重ねを大切にしながら、地域に根ざした交流と実践知の共有を目指します。</p>
