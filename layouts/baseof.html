@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="16x16 32x32 48x48" type="image/x-icon">
+  <link rel="icon" href="{{ "favicon.png" | relURL }}" sizes="48x48" type="image/png">
   <title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
   <meta name="description" content="{{ .Description | default site.Params.description }}">
   <meta property="og:site_name" content="{{ site.Title }}">

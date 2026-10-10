@@ -4,3 +4,4 @@
 hugo.exe
 /bin/
 /.playwright-mcp/
+.DS_Store
