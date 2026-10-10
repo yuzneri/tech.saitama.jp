@@ -226,6 +226,14 @@ img { max-width: 100%; height: auto; }
   color: var(--ink-soft);
 }
 
+.event-ogp {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-top: 1.2rem;
+}
+
 .event-meta {
   background: var(--green-soft);
   border-radius: var(--radius);

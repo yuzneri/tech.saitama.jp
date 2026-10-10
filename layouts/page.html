@@ -5,6 +5,8 @@
       <header class="page-header">
         <h1>{{ .Title }}</h1>
         {{ if eq .Section "events" }}
+        {{/* ogp.png は Hugo のビルド後に ogp/config.yaml で生成されるため、存在確認はできない */}}
+        <img class="event-ogp" src="{{ .RelPermalink }}ogp.png" width="1200" height="630" alt="{{ .Title }}">
         <dl class="event-meta">
           <div><dt>日時</dt><dd>{{ partial "event-when.html" . }}</dd></div>
           {{ with .Params.venue }}<div><dt>会場</dt><dd>{{ . }}</dd></div>{{ end }}
