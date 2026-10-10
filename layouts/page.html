@@ -5,6 +5,7 @@
       <header class="page-header">
         <h1>{{ .Title }}</h1>
         {{ if eq .Section "events" }}
+        {{ with .Params.description }}<p class="event-lead">{{ . }}</p>{{ end }}
         {{/* ogp.png は Hugo のビルド後に ogp/config.yaml で生成されるため、存在確認はできない */}}
         <img class="event-ogp" src="{{ .RelPermalink }}ogp.png" width="1200" height="630" alt="{{ .Title }}">
         <dl class="event-meta">
@@ -12,6 +13,8 @@
           {{ with .Params.venue }}<div><dt>会場</dt><dd>{{ . }}</dd></div>{{ end }}
           {{ with .Params.address }}<div><dt>住所</dt><dd>{{ . }}</dd></div>{{ end }}
           {{ with .Params.fee }}<div><dt>参加費</dt><dd>{{ . }}</dd></div>{{ end }}
+          {{ with .Params.capacity }}<div><dt>定員</dt><dd>{{ . }}名</dd></div>{{ end }}
+          {{ with .Params.hashtag }}<div><dt>ハッシュタグ</dt><dd><a href="https://x.com/hashtag/{{ . }}" target="_blank" rel="noopener">#{{ . }}</a></dd></div>{{ end }}
           {{ with .Params.connpass }}<div><dt>申し込み</dt><dd><a href="{{ . }}" target="_blank" rel="noopener">connpassイベントページ ↗</a></dd></div>{{ end }}
         </dl>
         {{ end }}

@@ -226,6 +226,11 @@ img { max-width: 100%; height: auto; }
   color: var(--ink-soft);
 }
 
+.event-lead {
+  margin: 0.4rem 0 0;
+  color: var(--ink-soft);
+}
+
 .event-ogp {
   display: block;
   width: 100%;
@@ -244,7 +249,7 @@ img { max-width: 100%; height: auto; }
 .event-meta div { display: flex; gap: 1em; }
 
 .event-meta dt {
-  flex: 0 0 5em;
+  flex: 0 0 6em;
   color: var(--green-deep);
   font-weight: 600;
 }
