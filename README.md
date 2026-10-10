@@ -21,6 +21,21 @@ Cloudflare Pages でビルドし公開する。`main` への push でビルド�
 開催予定/過去の振り分けを更新するため、[connpass-sync](https://github.com/yuzneri/connpass-sync) が毎日 6:00 JST に deploy hook を叩いて再ビルドする。
 `public/` はビルド成果物なのでコミットしない。
 
+Cloudflare Pages のビルドコマンドは次のとおり。
+Hugo でビルドしたあと、[HugoOGPImageGenerator](https://github.com/yuzneri/HugoOGPImageGenerator) で各ページの OGP 画像を `public/<ページ>/ogp.png` に生成する。
+
+```sh
+hugo && curl -fsSL https://raw.githubusercontent.com/yuzneri/HugoOGPImageGenerator/main/install.sh | INSTALL_DIR=bin VERSION=v26 sh && bin/ogp . --config ogp/config.yaml
+```
+
+## OGP 画像
+
+- トップページは `static/ogp.png` をそのまま使う（生成しない）。
+- それ以外のページは `ogp/config.yaml` の設定で生成する。背景は `ogp/background.png`、イベントは `ogp/events.yaml` でタイトルの下に日時と会場を入れる。
+- `ogp/background.png` と `static/ogp.png` は、`ogp/source/` の元画像（`background.png`・`top.png`）を 1200x630 に縮小（トップは上下を中央で切り詰め）したもの。ジェネレーターは背景を拡縮しないため、出力サイズに合わせてある。
+- フォントは `ogp/fonts/` の BIZ UDPGothic（SIL OFL 1.1、`ogp/fonts/OFL.txt`）。
+- 手元で確認するときも、上のビルドコマンドと同じく `hugo` のあとに `bin/ogp . --config ogp/config.yaml` を実行する。
+
 ## イベントの追加
 
 ```sh

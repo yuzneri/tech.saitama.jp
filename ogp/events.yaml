@@ -1,0 +1,20 @@
+# content/events/ 配下のイベント用。タイトルの下に開催日時と会場を出す。
+# イベント一覧（events/_index.md）にも適用されるが、日時も会場も持たないので説明は空になり、タイトルだけが出る。
+
+description:
+  visible: true
+  content: "{{dateFormat \"2006年1月2日 15:04\" .Date}}{{with .Fields.end}}〜{{dateFormat \"15:04\" .}}{{end}}{{with .Fields.venue}}\n{{.}}{{end}}"
+  font: "fonts/BIZUDPGothic-Bold.ttf"
+  size: 26
+  color: "#1f3b73"
+  area:
+    x: 60
+    y: 262
+    width: 560
+    height: 80
+  block_position: "top-left"
+  line_alignment: "left"
+  overflow: "shrink"
+  min_size: 18
+  line_height: 1.4
+  letter_spacing: 0

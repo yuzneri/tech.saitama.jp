@@ -1,0 +1,36 @@
+# HugoOGPImageGenerator の全体設定。
+# Hugo のビルド後に `ogp . --config ogp/config.yaml` で public/ 配下へ画像を出力する。
+
+# トップページは static/ogp.png（専用の画像）をそのまま使うので生成しない。
+kinds: [section, page]
+
+background:
+  # source/background.png（1731x909）を OGP の 1200x630 に縮小したもの。
+  # ジェネレーターは背景を拡縮しないため、出力サイズに合わせてある。
+  image: "background.png"
+
+output:
+  directory: "public"
+  format: "png"
+
+title:
+  # Cloudflare Pages のビルド環境には日本語フォントがないため、リポジトリに同梱したものを使う。
+  # golang/freetype は CFF（.otf）を読めないので TrueType を置く。
+  font: "fonts/BIZUDPGothic-Bold.ttf"
+  size: 56
+  color: "#0b1d4a"
+  # 背景の左上、ロゴより左かつ街並みより上の空白に収める。
+  area:
+    x: 60
+    y: 60
+    width: 560
+    height: 190
+  block_position: "bottom-left"
+  line_alignment: "left"
+  overflow: "shrink"
+  min_size: 32
+  line_height: 1.3
+  letter_spacing: 0
+
+description:
+  visible: false
