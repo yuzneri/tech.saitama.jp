@@ -52,6 +52,7 @@ front matter の `date`（開始日時）・`end`（終了日時）・`venue`・
 ## 構成
 
 - `content/_index.md` — トップ（コミュニティ紹介）
+- `content/policy.md` — 運営方針
 - `content/code-of-conduct.md` — 行動規範
 - `content/events/` — イベント（1イベント = 1ファイル）
 - `layouts/` — 自作の最小テーマ（baseof / home / section / page + event-card partial）

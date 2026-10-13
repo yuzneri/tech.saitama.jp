@@ -23,6 +23,10 @@ disableHugoGeneratorInject = true
     pageRef = "/events"
     weight = 20
   [[menus.main]]
+    name = "運営方針"
+    pageRef = "/policy"
+    weight = 25
+  [[menus.main]]
     name = "行動規範"
     pageRef = "/code-of-conduct"
     weight = 30
