@@ -1,0 +1,10 @@
+{{ define "title" }}ページが見つかりません | {{ site.Title }}{{ end }}
+{{ define "main" }}
+<section class="section">
+  <div class="container container-narrow">
+    <h1>ページが見つかりません</h1>
+    <p>お探しのページは移動または削除されたか、URL が間違っている可能性があります。</p>
+    <p><a href="{{ site.Home.RelPermalink }}">トップページへ戻る</a></p>
+  </div>
+</section>
+{{ end }}
