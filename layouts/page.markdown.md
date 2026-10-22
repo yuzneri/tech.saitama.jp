@@ -24,7 +24,12 @@
 - 申し込み: {{ . }}
 {{- end }}
 {{ end }}
-{{ trim .RawContent " \n" }}
+{{- /* HTML で書かれたページ（connpass-sync が追加するイベント）だけ変換する。Markdown の原文まで変換すると、文中の改行が空白に置き換わって崩れる */}}
+{{ if eq .Params.markup "html" }}
+{{- trim (.Content | transform.HTMLToMarkdown) " \n" }}
+{{- else }}
+{{- trim .RawContent " \n" }}
+{{- end }}
 {{ with .Params.connpass }}
 参加枠・タイムテーブルなどの詳細と申し込みは [connpassイベントページ]({{ . }}) をご覧ください。
 {{ end -}}

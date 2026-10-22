@@ -53,7 +53,8 @@ front matter の `date`（開始日時）・`end`（終了日時）・`venue`・
 
 AI が HTML を解析せずに読めるよう、各ページの Markdown 版（`<ページ>/index.md`）と、サイトの案内 `/llms.txt`（[llms.txt](https://llmstxt.org/) 形式）を出力する。
 テンプレートは `layouts/*.markdown.md` と `layouts/home.llms.txt`。
-本文は元の Markdown をそのまま出すため、本文中の生 HTML（`markup: html` のイベントやトップの特徴一覧）は HTML のまま出る。
+本文は元の Markdown をそのまま出す。`markup: html` のイベント（connpass-sync が追加したもの）だけは `transform.HTMLToMarkdown` で Markdown に変換する。
+Markdown 中に書いた生 HTML（トップの特徴一覧）は HTML のまま出る。
 
 ## 構成
 
