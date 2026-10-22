@@ -4,7 +4,7 @@
     <title>{{ .Title }} | {{ site.Title }}</title>
     <link>{{ .Permalink }}</link>
     <description>{{ site.Title }} のイベント情報</description>
-    <language>{{ site.LanguageCode }}</language>
+    <language>{{ site.Language.Locale }}</language>
     {{- with .OutputFormats.Get "rss" }}
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{- end }}

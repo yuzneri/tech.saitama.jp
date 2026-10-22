@@ -1,5 +1,5 @@
 baseURL = "https://tech.saitama.jp/"
-languageCode = "ja"
+locale = "ja"
 title = "Tech Saitama"
 defaultContentLanguage = "ja"
 hasCJKLanguage = true
@@ -20,6 +20,10 @@ disableHugoGeneratorInject = true
   mediaType = "text/plain"
   isPlainText = true
   rel = "describedby"
+
+# connpass-sync が追加するイベントは markup: html のため、既定で拒否される HTML の本文を許可する（Org は既定どおり拒否）
+[security]
+  allowContent = ["! ^text/org$"]
 
 [params]
   description = "埼玉を拠点に、エンジニア同士が学び、つながり、技術をじっくり育てていくコミュニティ"
