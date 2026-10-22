@@ -8,6 +8,19 @@ buildFuture = true
 disableKinds = ["taxonomy", "term"]
 disableHugoGeneratorInject = true
 
+# AI 向けに各ページの Markdown 版（index.md）と /llms.txt を出力する
+# 組み込みの markdown フォーマットを使う。events セクションは front matter の outputs が優先される
+[outputs]
+  home = ["html", "rss", "markdown", "llms"]
+  page = ["html", "markdown"]
+  section = ["html", "rss", "markdown"]
+
+[outputFormats.llms]
+  baseName = "llms"
+  mediaType = "text/plain"
+  isPlainText = true
+  rel = "describedby"
+
 [params]
   description = "埼玉を拠点に、エンジニア同士が学び、つながり、技術をじっくり育てていくコミュニティ"
   connpassURL = "https://bonsai-dev.connpass.com/"

@@ -49,6 +49,12 @@ front matter の `date`（開始日時）・`end`（終了日時）・`venue`・
 イベントは RSS（`/events/index.xml`）と iCalendar（`/events/index.ics`）にも自動で出力される。
 テンプレートは `layouts/events/section.rss.xml` と `layouts/events/section.calendar.ics`。
 
+## AI 向けの Markdown
+
+AI が HTML を解析せずに読めるよう、各ページの Markdown 版（`<ページ>/index.md`）と、サイトの案内 `/llms.txt`（[llms.txt](https://llmstxt.org/) 形式）を出力する。
+テンプレートは `layouts/*.markdown.md` と `layouts/home.llms.txt`。
+本文は元の Markdown をそのまま出すため、本文中の生 HTML（`markup: html` のイベントやトップの特徴一覧）は HTML のまま出る。
+
 ## 構成
 
 - `content/_index.md` — トップ（コミュニティ紹介）

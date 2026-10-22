@@ -1,0 +1,35 @@
+{{- /* https://llmstxt.org/ の形式。リンク先は各ページの Markdown 版 */ -}}
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+
+各ページの Markdown 版は、ページの URL に index.md を付けた場所にあります。
+
+## ページ
+
+{{ range site.Menus.main -}}
+{{ $name := .Name -}}
+{{ with .Page -}}
+{{ with .OutputFormats.Get "markdown" }}- [{{ $name }}]({{ .Permalink }}){{ end }}{{ with .Description }}: {{ . }}{{ end }}
+{{ end -}}
+{{ end -}}
+{{ $events := where site.RegularPages "Section" "events" -}}
+{{ with (where $events "Date" ">=" now).Reverse }}
+## 開催予定のイベント
+
+{{ range . }}{{ partial "event-item.md" . }}{{ end -}}
+{{ end -}}
+{{ with where $events "Date" "<" now }}
+## 過去のイベント
+
+{{ range . }}{{ partial "event-item.md" . }}{{ end -}}
+{{ end }}
+## Optional
+
+- [盆栽.dev（connpass）]({{ site.Params.connpassURL }}): イベントの告知と申し込み
+{{ with site.GetPage "/events" -}}
+{{ with .OutputFormats.Get "rss" }}- [イベントの RSS]({{ .Permalink }})
+{{ end -}}
+{{ with .OutputFormats.Get "calendar" }}- [イベントの iCalendar]({{ .Permalink | replaceRE "^webcal://" "https://" }})
+{{ end -}}
+{{ end -}}
